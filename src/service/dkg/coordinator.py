@@ -9,7 +9,8 @@ from src.service.crypto_ops import (
     serialize_ciphertext,
     partial_decrypt_lead
 )
-
+from src.service.crypto_ops.roles import one_hot_to_role, NUM_ROLE_TYPES
+from src.service.crypto_ops.threshold_decryption import fusion_decrypt
 
 from src.service.dkg.network_client import DKGNetworkClient
 from src.service.dkg.protocol import DKGProtocol
@@ -181,8 +182,6 @@ class DKGCoordinator:
         게임 종료 시 모든 플레이어의 역할을 DKG threshold decryption으로 복호화.
         각 역할에 대해 모든 플레이어로부터 partial decryption을 수집하고 fusion.
         """
-        from service.crypto.roles import one_hot_to_role, NUM_ROLE_TYPES
-        from service.crypto.threshold_decryption import fusion_decrypt
 
         print("\n" + "="*50)
         print(" Game End: Revealing All Roles via DKG")
